@@ -1,14 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {useFonts} from '@use-expo/font'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NativeBaseProvider} from 'native-base'
 
-export default function App() {
+import {LoginScreen} from './Screens/LoginScreen'
+import {HomeScreen} from './Screens/HomeScreen'
+import {InfoScreen} from './Screens/InfoScreen'
+
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+
+function HomeTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   
+    <Tab.Navigator>
+      <Tab.Screen name="Login" component={LoginScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Info" component={InfoScreen} options={{title:"Info"}}/>
+    </Tab.Navigator>
+    
   );
+}
+
+
+export default function App(){
+
+  let [fontsLoaded] = useFonts({
+
+      'Handlee-Regular': require('./assets/Handlee-Regular.ttf'),
+      'Space-Rave': require('./assets/Space-Rave.ttf')
+  });
+
+  if(!fontsLoaded){
+
+  return<View/>;
+  }else {
+      return(
+        <NativeBaseProvider>
+        <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} options={{title:"Bienvenido"}}/>
+          <Stack.Screen name="Home" component={HomeTabs} />
+          </Stack.Navigator>
+      </NavigationContainer>
+      </NativeBaseProvider>
+
+      );
+
+
+
+  }
 }
 
 const styles = StyleSheet.create({
