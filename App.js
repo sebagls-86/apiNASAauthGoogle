@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useFonts} from '@use-expo/font'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {NativeBaseProvider} from 'native-base'
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {LoginScreen} from './Screens/LoginScreen'
 import {HomeScreen} from './Screens/HomeScreen'
 import {InfoScreen} from './Screens/InfoScreen'
@@ -14,11 +14,28 @@ import {InfoScreen} from './Screens/InfoScreen'
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
+<i class=""></i>
 function HomeTabs() {
   return (
    
-    <Tab.Navigator screenOptions={{headerShown:false}}>
+    <Tab.Navigator screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Home') {
+          iconName = focused
+            ? 'home'
+            : 'home-outline';
+        } else if (route.name === 'Info') {
+          iconName = focused ? 'information-circle' : 'information-circle-outline';
+        }
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: '#1E1855',
+      tabBarInactiveTintColor: 'gray',
+      headerShown: false,
+    })}
+  >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Info" component={InfoScreen} />
     </Tab.Navigator>
