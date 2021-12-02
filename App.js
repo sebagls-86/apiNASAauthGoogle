@@ -18,9 +18,9 @@ const Tab = createBottomTabNavigator();
 function HomeTabs() {
   return (
    
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
-      <Tab.Screen name="Info" component={InfoScreen} options={{title:"Info"}}/>
+    <Tab.Navigator screenOptions={{headerShown:false}}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Info" component={InfoScreen} />
     </Tab.Navigator>
     
   );
@@ -44,7 +44,7 @@ export default function App(){
         <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} options={{title:"Bienvenido"}}/>
-          <Stack.Screen name="Home" component={HomeTabs} />
+          <Stack.Screen name="Home" component={HomeTabs} options={{headerShown:false}}/>
           </Stack.Navigator>
       </NavigationContainer>
       </NativeBaseProvider>
