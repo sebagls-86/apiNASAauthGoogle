@@ -19,8 +19,7 @@ function HomeTabs() {
   return (
    
     <Tab.Navigator>
-      <Tab.Screen name="Login" component={LoginScreen} />
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
       <Tab.Screen name="Info" component={InfoScreen} options={{title:"Info"}}/>
     </Tab.Navigator>
     

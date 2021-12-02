@@ -12,7 +12,7 @@ export function LoginScreen({navigation}) {
   React.useEffect(() => {
     if (response?.type === 'success') {
       console.log(response);
-      navigation.navigate("Home", {auth: response.authentication})
+      navigation.navigate("Home", {screen: 'Home', params: {auth: response.authentication}})
       }
   }, [response]);
 
